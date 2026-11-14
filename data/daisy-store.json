@@ -1,0 +1,129 @@
+{
+  "users": [
+    {
+      "id": "usr_arjun",
+      "name": "Arjun Verma",
+      "email": "arjun@daisy.mail",
+      "password": "$2b$10$JIJ1GKQKt8uTd.cZONtkHuwTd5S.k7tOSOXrX8j/yWap0SU6w7qs6",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "role": "BCA Final Year / Team Lead",
+      "preferences": {
+        "autoAnnounce": true,
+        "muted": false,
+        "voiceRate": 1,
+        "voicePitch": 1,
+        "selectedVoiceURI": ""
+      },
+      "createdAt": "2026-11-11T05:13:20.916Z"
+    },
+    {
+      "id": "usr_priya",
+      "name": "Priya Sharma",
+      "email": "priya@daisy.mail",
+      "password": "$2b$10$JIJ1GKQKt8uTd.cZONtkHuwTd5S.k7tOSOXrX8j/yWap0SU6w7qs6",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+      "role": "BCA 2nd Year / Frontend Developer",
+      "preferences": {
+        "autoAnnounce": true,
+        "muted": false,
+        "voiceRate": 1.05,
+        "voicePitch": 1.1,
+        "selectedVoiceURI": ""
+      },
+      "createdAt": "2026-11-12T05:13:20.916Z"
+    },
+    {
+      "id": "usr_mentor",
+      "name": "Prof. Rohan Nair",
+      "email": "mentor@daisy.mail",
+      "password": "$2b$10$JIJ1GKQKt8uTd.cZONtkHuwTd5S.k7tOSOXrX8j/yWap0SU6w7qs6",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
+      "role": "Faculty Mentor & Hackathon Evaluator",
+      "preferences": {
+        "autoAnnounce": true,
+        "muted": false,
+        "voiceRate": 0.95,
+        "voicePitch": 0.9,
+        "selectedVoiceURI": ""
+      },
+      "createdAt": "2026-11-09T05:13:20.916Z"
+    }
+  ],
+  "emails": [
+    {
+      "id": "eml_1794634105502_19fz",
+      "from": "arjun@daisy.mail",
+      "fromName": "Arjun Verma",
+      "to": "priya@daisy.mail",
+      "toName": "Priya Sharma",
+      "subject": "Test Real-Time Dispatch",
+      "body": "Hello Priya, checking Socket.IO real-time voice alert!",
+      "isRead": false,
+      "isStarred": false,
+      "messageId": "<1794634105484.wptqs27@daisy.mail>",
+      "smtpResponse": "250 2.0.0 OK: queued as 1794634105484.wptqs27@daisy.mail via Daisy SMTP Engine",
+      "deliveryStatus": "delivered",
+      "createdAt": "2026-11-14T05:28:25.502Z"
+    },
+    {
+      "id": "eml_1",
+      "from": "mentor@daisy.mail",
+      "fromName": "Prof. Rohan Nair",
+      "to": "arjun@daisy.mail",
+      "toName": "Arjun Verma",
+      "subject": "Daisy Hackathon Project Approval & Guidelines",
+      "body": "Hello Arjun,\n\nI have thoroughly reviewed the Smart Mail Notification & Voice Assistant project proposal. The integration of Socket.IO real-time event broadcasting along with browser Speech Synthesis meets all requirements for our BCA Hackathon.\n\nMake sure your presentation highlights the dual database design (MongoDB Atlas with graceful JSON store fallback) and live presence directory.\n\nBest of luck!\nProf. Rohan Nair",
+      "isRead": false,
+      "isStarred": true,
+      "messageId": "<2026.rohan.approval@daisy.mail>",
+      "smtpResponse": "250 2.0.0 OK: queued as 88a3f910 mentor-outbox",
+      "deliveryStatus": "delivered",
+      "createdAt": "2026-11-14T03:13:20.917Z"
+    },
+    {
+      "id": "eml_2",
+      "from": "priya@daisy.mail",
+      "fromName": "Priya Sharma",
+      "to": "arjun@daisy.mail",
+      "toName": "Arjun Verma",
+      "subject": "Aqua Glassmorphism UI Components Ready!",
+      "body": "Hey Arjun! I just pushed the new Frutiger Aero Aqua styling for the mailbox dashboard.\n\nKey highlights:\n- Frosted glass cards with backdrop blur\n- Electric cyan jelly action buttons\n- Voice Assistant reader with sentence chunking and waveform indicators\n\nLet me know if we need to adjust the speech pitch or rate defaults!",
+      "isRead": true,
+      "isStarred": false,
+      "messageId": "<2026.priya.ui-update@daisy.mail>",
+      "smtpResponse": "250 2.0.0 OK: queued as 77c12de4 priya-outbox",
+      "deliveryStatus": "delivered",
+      "createdAt": "2026-11-14T00:13:20.917Z"
+    },
+    {
+      "id": "eml_3",
+      "from": "arjun@daisy.mail",
+      "fromName": "Arjun Verma",
+      "to": "priya@daisy.mail",
+      "toName": "Priya Sharma",
+      "subject": "Socket.IO Real-Time Dispatch is Live",
+      "body": "Hi Priya,\n\nThe Socket.IO dispatch system is working perfectly. When you open two browser tabs (one for Arjun, one for Priya) and send a mail, the recipient tab instantly triggers the speech assistant announcement: \"You have received a new email from...\".\n\nLooking forward to our live demo with the jury!",
+      "isRead": false,
+      "isStarred": true,
+      "messageId": "<2026.arjun.socketio@daisy.mail>",
+      "smtpResponse": "250 2.0.0 OK: queued as 99bb01e2 arjun-outbox",
+      "deliveryStatus": "delivered",
+      "createdAt": "2026-11-14T04:13:20.917Z"
+    },
+    {
+      "id": "eml_4",
+      "from": "mentor@daisy.mail",
+      "fromName": "Prof. Rohan Nair",
+      "to": "priya@daisy.mail",
+      "toName": "Priya Sharma",
+      "subject": "Hackathon Presentation Schedule Reminder",
+      "body": "Dear Priya,\n\nYour team Daisy is scheduled for presentation slot #4 at 2:30 PM. Please ensure your 2-user demo is loaded in separate tabs to demonstrate the real-time notification loop and voice playback controls.\n\nRegards,\nProf. Rohan Nair",
+      "isRead": false,
+      "isStarred": false,
+      "messageId": "<2026.mentor.schedule@daisy.mail>",
+      "smtpResponse": "250 2.0.0 OK: queued as 44fd82a1 mentor-outbox",
+      "deliveryStatus": "delivered",
+      "createdAt": "2026-11-14T02:13:20.917Z"
+    }
+  ]
+}

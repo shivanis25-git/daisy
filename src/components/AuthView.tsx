@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Lock, User, Sparkles, ArrowRight, ShieldCheck, Zap, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Lock, User, Sparkles, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import { api } from '../lib/api.js';
 import { User as UserType } from '../types.js';
 
@@ -12,7 +12,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [role, setRole] = useState('BCA Student');
+  const [role, setRole] = useState('Member');
   const [loading, setLoading] = useState(false);
   const [loadingEmail, setLoadingEmail] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +37,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
     }
   };
 
-  // One-click quick login for instant 2-user demo
+  // One-click quick login for demo account (Shivani)
   const handleQuickLogin = async (demoEmail: string) => {
     setError(null);
     setLoading(true);
@@ -83,84 +83,47 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
           <p className="text-xs text-slate-500 font-medium">
             Smart Mail Notification & Voice Assistant System
           </p>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200/60 text-[11px] font-mono-numeric">
-            <Zap className="w-3 h-3 text-amber-500" />
-            <span>BCA Student Hackathon Edition</span>
-          </div>
         </div>
 
-        {/* Quick Demo 1-Click Login Card */}
+        {/* Quick Demo 1-Click Login Card (Shivani) */}
         <div className="aqua-glass-card rounded-2xl p-4 shadow-sm space-y-2.5 border border-sky-200/70">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-800">
-              ⚡ Quick 1-Click Demo Login
+            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-800 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+              <span>Quick 1-Click Demo Login</span>
             </span>
             <span className="text-[10px] text-slate-400 font-mono-numeric">password: daisy123</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={() => handleQuickLogin('arjun@daisy.mail')}
-              disabled={loading}
-              className="p-2.5 rounded-xl bg-white/80 hover:bg-sky-50 border border-sky-200/70 text-left transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
-            >
-              <div className="flex items-center gap-2">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80"
-                  alt="Arjun"
-                  className="w-7 h-7 rounded-full border border-sky-300 object-cover"
-                />
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-slate-800 truncate">
-                    {loadingEmail === 'arjun@daisy.mail' ? 'Signing in...' : 'Arjun Verma'}
-                  </div>
-                  <div className="text-[10px] text-sky-600 font-mono-numeric truncate">arjun@daisy.mail</div>
-                </div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => handleQuickLogin('priya@daisy.mail')}
-              disabled={loading}
-              className="p-2.5 rounded-xl bg-white/80 hover:bg-sky-50 border border-sky-200/70 text-left transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
-            >
-              <div className="flex items-center gap-2">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80"
-                  alt="Priya"
-                  className="w-7 h-7 rounded-full border border-sky-300 object-cover"
-                />
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-slate-800 truncate">
-                    {loadingEmail === 'priya@daisy.mail' ? 'Signing in...' : 'Priya Sharma'}
-                  </div>
-                  <div className="text-[10px] text-sky-600 font-mono-numeric truncate">priya@daisy.mail</div>
-                </div>
-              </div>
-            </button>
-          </div>
-
           <button
-            onClick={() => handleQuickLogin('mentor@daisy.mail')}
+            onClick={() => handleQuickLogin('shivani@daisy.mail')}
             disabled={loading}
-            className="w-full p-2.5 rounded-xl bg-white/60 hover:bg-sky-50 border border-sky-200/50 text-left transition-all flex items-center justify-between cursor-pointer disabled:opacity-50"
+            className="w-full p-3 rounded-xl bg-white/85 hover:bg-sky-50 border border-sky-200/80 text-left transition-all hover:scale-[1.01] cursor-pointer disabled:opacity-50 flex items-center justify-between shadow-xs group"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80"
-                alt="Mentor"
-                className="w-6 h-6 rounded-full border border-sky-300 object-cover"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                alt="Shivani"
+                className="w-10 h-10 rounded-full border border-sky-300 object-cover shadow-xs"
               />
-              <span className="text-xs font-semibold text-slate-700">
-                {loadingEmail === 'mentor@daisy.mail' ? 'Signing in...' : 'Prof. Rohan Nair'}{' '}
-                <span className="text-[10px] text-slate-400 font-mono-numeric">(mentor@daisy.mail)</span>
-              </span>
+              <div className="min-w-0">
+                <div className="text-sm font-bold text-slate-800">
+                  {loadingEmail === 'shivani@daisy.mail' ? 'Signing in...' : 'Shivani'}
+                </div>
+                <div className="text-xs text-sky-600 font-mono-numeric">shivani@daisy.mail</div>
+              </div>
             </div>
-            {loadingEmail === 'mentor@daisy.mail' ? (
-              <Loader2 className="w-3.5 h-3.5 text-blue-500 animate-spin" />
-            ) : (
-              <ArrowRight className="w-3.5 h-3.5 text-blue-500" />
-            )}
+
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-blue-600 hidden sm:inline group-hover:translate-x-0.5 transition-transform">
+                Launch Workspace
+              </span>
+              {loadingEmail === 'shivani@daisy.mail' ? (
+                <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />
+              ) : (
+                <ArrowRight className="w-4 h-4 text-blue-500 group-hover:translate-x-0.5 transition-transform" />
+              )}
+            </div>
           </button>
         </div>
 
@@ -218,7 +181,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Daisy Student"
+                      placeholder="e.g. Your Name"
                       required
                       className="w-full pl-9 pr-4 py-2 text-xs rounded-xl aqua-glass-input text-slate-800 placeholder-slate-400 focus:outline-none"
                     />
@@ -227,13 +190,13 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Role / Class
+                    Role / Title
                   </label>
                   <input
                     type="text"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    placeholder="e.g. BCA 3rd Year"
+                    placeholder="e.g. Team Member / Lead"
                     className="w-full px-3.5 py-2 text-xs rounded-xl aqua-glass-input text-slate-800 placeholder-slate-400 focus:outline-none"
                   />
                 </div>
@@ -250,7 +213,7 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. arjun@daisy.mail"
+                  placeholder="e.g. shivani@daisy.mail"
                   required
                   className="w-full pl-9 pr-4 py-2 text-xs font-mono-numeric rounded-xl aqua-glass-input text-slate-800 placeholder-slate-400 focus:outline-none"
                 />
@@ -294,9 +257,8 @@ export const AuthView: React.FC<AuthViewProps> = ({ onAuthSuccess }) => {
           </form>
         </div>
 
-        {/* Footer Hackathon Info */}
+        {/* Footer Info */}
         <div className="text-center text-[11px] text-slate-400 space-y-1">
-          <p>Dual DB: MongoDB Atlas + Local JSON Store Fallback</p>
           <p>Real-time Nodemailer + Socket.IO + Web Speech Synthesis</p>
         </div>
       </div>

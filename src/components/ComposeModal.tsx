@@ -147,7 +147,7 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({
               type="email"
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              placeholder="e.g. priya@daisy.mail or any email"
+              placeholder="e.g. colleague@daisy.mail or any email"
               className="w-full px-3.5 py-2 text-xs font-mono-numeric rounded-xl aqua-glass-input text-slate-800 placeholder-slate-400 focus:outline-none"
               required
             />

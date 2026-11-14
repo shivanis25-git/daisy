@@ -447,7 +447,7 @@ async function startServer() {
     console.log(` [Daisy] Smart Mail & Voice Assistant listening on http://0.0.0.0:${PORT}`);
     console.log(` Dual DB Mode: ${dbStatus.isMongo ? 'MongoDB (Connected)' : 'Local JSON Store (data/daisy-store.json)'}`);
     console.log(` Real-time Socket.IO: ACTIVE`);
-    console.log(` Ready for 2-user demo test (Arjun & Priya)!`);
+    console.log(` Ready for demo test (Shivani)!`);
     console.log(`======================================================\n`);
   });
 }

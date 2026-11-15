@@ -1,0 +1,68 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex af3f68a..a3b763c 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -3,3 +3,4 @@[m [mdist[m
+ .env[m
+ *.log[m
+ .DS_Store[m
+[32m+[m[32mdata/daisy-store.json[m
+[1mdiff --git a/data/daisy-store.json b/data/daisy-store.json[m
+[1mdeleted file mode 100644[m
+[1mindex 16c3170..0000000[m
+[1m--- a/data/daisy-store.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,52 +0,0 @@[m
+[31m-{[m
+[31m-  "users": [[m
+[31m-    {[m
+[31m-      "id": "usr_shivani",[m
+[31m-      "name": "Shivani",[m
+[31m-      "email": "shivani@daisy.mail",[m
+[31m-      "password": "$2b$10$N/1nl1XX53EdtkptrCs7MOYeKf2w62ROBy8Nm5XBpaXJrlqUbaEUa",[m
+[31m-      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",[m
+[31m-      "role": "Team Lead",[m
+[31m-      "preferences": {[m
+[31m-        "autoAnnounce": true,[m
+[31m-        "muted": false,[m
+[31m-        "voiceRate": 1,[m
+[31m-        "voicePitch": 1,[m
+[31m-        "selectedVoiceURI": ""[m
+[31m-      },[m
+[31m-      "createdAt": "2026-11-12T06:47:48.532Z"[m
+[31m-    }[m
+[31m-  ],[m
+[31m-  "emails": [[m
+[31m-    {[m
+[31m-      "id": "eml_1",[m
+[31m-      "from": "assistant@daisy.mail",[m
+[31m-      "fromName": "Daisy Assistant",[m
+[31m-      "to": "shivani@daisy.mail",[m
+[31m-      "toName": "Shivani",[m
+[31m-      "subject": "Welcome to Daisy Smart Mail, Shivani!",[m
+[31m-      "body": "Hello Shivani,\n\nWelcome to your Daisy Smart Mail workspace. Daisy notifies you in real-time when new emails arrive and reads messages aloud with text-to-speech synthesis.\n\nTry clicking \"Listen to Email\" to test the voice reader, or use Compose to send an email to yourself or any recipient.\n\nBest regards,\nDaisy Assistant",[m
+[31m-      "isRead": false,[m
+[31m-      "isStarred": true,[m
+[31m-      "messageId": "<2026.welcome.shivani@daisy.mail>",[m
+[31m-      "smtpResponse": "250 2.0.0 OK: queued as 88a3f910 system-outbox",[m
+[31m-      "deliveryStatus": "delivered",[m
+[31m-      "createdAt": "2026-11-14T04:47:48.532Z"[m
+[31m-    },[m
+[31m-    {[m
+[31m-      "id": "eml_2",[m
+[31m-      "from": "design@daisy.mail",[m
+[31m-      "fromName": "Daisy Design Team",[m
+[31m-      "to": "shivani@daisy.mail",[m
+[31m-      "toName": "Shivani",[m
+[31m-      "subject": "Aqua Glassmorphism & Voice Engine Ready",[m
+[31m-      "body": "Hey Shivani!\n\nThe new Aqua Frutiger Aero dashboard is now active.\n\nKey features enabled:\n- Frosted glass cards with soft elevation\n- Voice Assistant reader with sentence chunking & playback controls\n- Real-time Socket.IO alerts\n\nFeel free to explore Voice Settings to customize the reading speed and tone!",[m
+[31m-      "isRead": true,[m
+[31m-      "isStarred": false,[m
+[31m-      "messageId": "<2026.design.update@daisy.mail>",[m
+[31m-      "smtpResponse": "250 2.0.0 OK: queued as 77c12de4 design-outbox",[m
+[31m-      "deliveryStatus": "delivered",[m
+[31m-      "createdAt": "2026-11-14T01:47:48.532Z"[m
+[31m-    }[m
+[31m-  ][m
+[31m-}[m
+\ No newline at end of file[m

@@ -36,6 +36,9 @@ function initTransporter() {
         port,
         secure: port === 465,
         auth: { user, pass },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 20000,
       });
       isRealSmtp = true;
       console.log(`[Daisy Mailer] Configured with real SMTP server: ${host}:${port}`);
@@ -95,13 +98,6 @@ export async function sendMail(params: SendMailParams): Promise<MailerResult> {
     };
   } catch (err: any) {
     console.error('[Daisy Mailer] sendMail error:', err);
-    // Even if remote SMTP fails during demo, provide a fallback delivered response so demo doesn't crash
-    return {
-      messageId: customMessageId,
-      response: `250 2.0.0 OK: fallback delivered locally [${err?.message || 'SMTP offline'}]`,
-      accepted: [params.to],
-      rejected: [],
-      isRealSmtp: false,
-    };
+    throw new Error(`SMTP delivery failed: ${err?.message || 'SMTP offline'}`);
   }
 }

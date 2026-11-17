@@ -1,4 +1,3 @@
-import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -20,84 +19,80 @@ export interface MailerResult {
   isRealSmtp: boolean;
 }
 
-let transporter: nodemailer.Transporter;
-let isRealSmtp = false;
+export async function sendMail(
+  params: SendMailParams
+): Promise<MailerResult> {
 
-function initTransporter() {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const port = parseInt(process.env.SMTP_PORT || '587', 10);
+  const apiKey = process.env.BREVO_API_KEY;
 
-  if (host && user && pass) {
-    try {
-      transporter = nodemailer.createTransport({
-        host,
-        port,
-        secure: port === 465,
-        auth: { user, pass },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 20000,
-      });
-      isRealSmtp = true;
-      console.log(`[Daisy Mailer] Configured with real SMTP server: ${host}:${port}`);
-    } catch (err) {
-      console.warn('[Daisy Mailer] Failed to configure SMTP, falling back to JSON transport:', err);
-      transporter = nodemailer.createTransport({ jsonTransport: true });
-      isRealSmtp = false;
-    }
-  } else {
-    // Virtual hackathon-friendly JSON transport: fully valid MIME headers & messageId
-    transporter = nodemailer.createTransport({
-      jsonTransport: true,
-    });
-    isRealSmtp = false;
-    console.log('[Daisy Mailer] Using local JSON transport (MIME Message-ID & 250 OK generated for hackathon demo)');
+  if (!apiKey) {
+    throw new Error('BREVO_API_KEY is missing');
   }
-}
 
-initTransporter();
+  const sender = {
+    name: params.fromName,
+    email: params.from,
+  };
 
-export async function sendMail(params: SendMailParams): Promise<MailerResult> {
-  const fromAddress = params.fromName
-    ? `"${params.fromName}" <${params.from}>`
-    : params.from;
+  const recipient = {
+    name: params.toName,
+    email: params.to,
+  };
 
-  const toAddress = params.toName
-    ? `"${params.toName}" <${params.to}>`
-    : params.to;
-
-  const uniqueSuffix = Math.random().toString(36).substring(2, 9);
-  const customMessageId = `<${Date.now()}.${uniqueSuffix}@daisy.mail>`;
+  const payload = {
+    sender,
+    to: [recipient],
+    subject: params.subject,
+    textContent: params.text,
+    htmlContent: params.html ||
+      `<div style="font-family:sans-serif;line-height:1.6;color:#1e293b;">
+        ${params.text.replace(/\n/g, '<br/>')}
+      </div>`,
+  };
 
   try {
-    const info = await transporter.sendMail({
-      from: fromAddress,
-      to: toAddress,
-      subject: params.subject,
-      text: params.text,
-      html: params.html || `<div style="font-family: sans-serif; line-height: 1.6; color: #1e293b;">${params.text.replace(/\n/g, '<br/>')}</div>`,
-      messageId: customMessageId,
-    });
+    const response = await fetch(
+      'https://api.brevo.com/v3/smtp/email',
+      {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': apiKey,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(20000),
+      }
+    );
 
-    const messageId = info.messageId || customMessageId;
-    const response = isRealSmtp && info.response
-      ? info.response
-      : `250 2.0.0 OK: queued as ${messageId.replace(/[<>]/g, '')} via Daisy SMTP Engine`;
+    const result = await response.json();
 
-    const accepted = Array.isArray(info.accepted) ? info.accepted.map(String) : [params.to];
-    const rejected = Array.isArray(info.rejected) ? info.rejected.map(String) : [];
+    if (!response.ok) {
+      console.error('[Daisy Mailer] Brevo API Error:', result);
+
+      throw new Error(
+        result.message || `Brevo API failed: ${response.status}`
+      );
+    }
+
+    console.log(
+      '[Daisy Mailer] Email accepted by Brevo:',
+      result.messageId
+    );
 
     return {
-      messageId,
-      response,
-      accepted,
-      rejected,
-      isRealSmtp,
+      messageId: result.messageId,
+      response: `Accepted by Brevo: ${result.messageId}`,
+      accepted: [params.to],
+      rejected: [],
+      isRealSmtp: true,
     };
+
   } catch (err: any) {
-    console.error('[Daisy Mailer] sendMail error:', err);
-    throw new Error(`SMTP delivery failed: ${err?.message || 'SMTP offline'}`);
+    console.error('[Daisy Mailer] Send error:', err);
+
+    throw new Error(
+      `Brevo email delivery failed: ${err.message || 'Unknown error'}`
+    );
   }
 }
